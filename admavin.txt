@@ -1,0 +1,277 @@
+//Problem 1 - Swapping Min Max
+function greater(a,b){
+    
+    m=[...a]
+    mm=[...b]
+    var aa=[]
+    var bb=[]
+    for(let i=0;i<m.length;i++)
+    {
+        if(m[i] < mm[i])
+        {
+            aa.push(mm[i])
+            bb.push(m[i])
+        }
+        else{
+             aa.push(m[i])
+            bb.push(mm[i])
+        }
+        
+    }
+    greats=aa.sort((a,b)=>b-a)
+   great1=bb.sort((a,b)=>b-a)
+    
+   return greats[0]*great1[0]
+  //return [[...aa],[...bb]]
+}
+mm=greater([1,2,3,2,3,4,5,3,5,6,7,8],
+[2,1,5,3,4,6,4,3,2,3,1,2])
+
+console.log(mm)
+
+//-----------------------------------------------------------------------------------------------
+
+//Problem 2 - Possible Three Letter String
+
+
+a=["a","b","c"]
+
+create=(a)=>{
+    
+aa=a.length*a.length
+//console.log(aa)
+fin=[]
+for(let i=0;i<a.length;i++)
+{
+      var cou=-1
+      var dd=0
+    var co=-1
+ 
+   for(let j=0;j<aa;j++)
+   {
+   
+   var emp=[]
+    cou++
+    co++
+   emp.push(`${a[i]}`)
+     
+         if(cou==a.length)
+         {
+             cou=0
+             dd++
+         }
+         emp.push(a[dd])
+         if(co == a.length)
+         {
+             co=0
+         }
+         
+         emp.push(a[co])
+   
+     fin.push(emp.join(""))
+   }
+}
+return fin.sort()
+}
+fin=create(a)
+  console.log(fin)
+
+//-----------------------------------------------------------------------------------------
+
+//Problem 3 - Divisibility Cases
+
+const jayam=function(s,a){ 
+mm=[]
+jj=[]
+vv=[]
+ee=[]
+for(let i=s;i<=a;i++)
+{
+    if((i%3)==0 || (i%5)==0)
+    {
+       mm.push(i) 
+    }
+    if((i%3)==0 && (i%5)==0)
+    {
+       jj.push(i) 
+    }
+    if((i%3)==0 && (i%5)!==0)
+    {
+       vv.push(i) 
+    }
+    if((i%3)!==0 && (i%5)==0)
+    {
+       ee.push(i) 
+    }
+}
+ff=[mm,jj,vv,ee]
+    return(ff)
+}
+console.log(jayam(3,25))
+
+//------------------------------------------------------------------------------------------
+
+//Problem 4 - Shortest Distance of Manhattan Path
+
+a=[
+    [[0,0],[1,0],[2,0],[3,0],[4,0],[5,0],[6,0],[7,0],[8,0],[9,0],[10,0]],
+    [[0,1],[1,1],[2,1],[3,1],[4,1],[5,1],[6,1],[7,1],[8,1],[9,1],[10,1]],
+    [[0,2],[1,2],[2,2],[3,2],[4,2],[5,2],[6,2],[7,2],[8,2],[9,2],[10,2]],
+    [[0,3],[1,3],[2,3],[3,3],[4,3],[5,3],[6,3],[7,3],[8,3],[9,3],[10,3]],
+    [[0,4],[1,4],[2,4],[3,4],[4,4],[5,4],[6,4],[7,4],[8,4],[9,4],[10,4]],
+    [[0,5],[1,5],[2,5],[3,5],[4,5],[5,5],[6,5],[7,5],[8,5],[9,5],[10,5]],
+    [[0,6],[1,6],[2,6],[3,6],[4,6],[5,6],[6,6],[7,6],[8,6],[9,6],[10,6]],
+    [[0,7],[1,7],[2,7],[3,7],[4,7],[5,7],[6,7],[7,7],[8,7],[9,7],[10,7]],
+    [[0,8],[1,8],[2,8],[3,8],[4,8],[5,8],[6,8],[7,8],[8,8],[9,8],[10,8]],
+    [[0,9],[1,9],[2,9],[3,9],[4,9],[5,9],[6,9],[7,9],[8,9],[9,9],[10,9]],
+    [[0,10],[1,10],[2,10],[3,10],[4,10],[5,10],[6,10],[7,10],[8,10],[9,10],[10,10]]
+    ]
+    
+    
+    function findroute(aa,bb) {
+         m=bb
+    
+    search=aa
+
+    curr=[]
+    fin=[]
+          ind=search[1]
+          eas=search[0]
+          wes=search[0]
+    for(let i=0 ; i<m.length;i++)
+    {
+          
+       
+        if(m[i]=="N")
+        {
+            ind++
+          //  console.log(ind,"ind")
+           curr=a[ind]
+           fin=curr[search[0]]
+        }
+        if(m[i]=="E")
+        {
+            curr=a[ind]
+            eas++
+            fin=curr[eas]
+        }
+        if(m[i]=="W")
+        {
+             curr=a[ind]
+            wes=eas-1
+            eas--
+           //  console.log(eas,wes,"ew")
+            fin=curr[wes]
+        }
+        if(m[i]=="S")
+        {
+            
+            sou=ind-1
+            ind--
+           // ind-1
+           // console.log(ind,sou,"sou")
+           
+            curr=a[sou]
+            fin=curr[eas]
+          
+            
+        }
+        
+     ans=Math.sqrt((fin[0])**2+(fin[1])**2)
+    }
+    if(ans)
+    {
+        if(search[0]==fin[0] && search[1]==fin[1]) {
+        return(0) 
+    }
+    else{
+       return(ans)
+    }
+    }
+    else{
+       return("wrong route")
+    }
+    }
+    answer=findroute([5,5],"NS")
+   
+   console.log(answer)
+    
+//-------------------------------------------------------------------------------------------
+//Problem 5 - String Filtering
+
+    a=["user", "passw0rd", "lett3r", "101", "developer"]
+
+function str(a){
+    alphanumeric=0
+    numeric=0
+    for(let i=0;i<a.length;i++)
+    {
+        mm = a[i]
+        cou=0
+            for( let j=0;j<mm.length;j++)
+            {
+               if(+mm[j] || +mm[j]==0)
+               {
+                   cou++
+                   if(mm.length==cou)
+                   {
+                       numeric++
+                   }
+                 
+              }
+            }
+              for( let j=0;j<mm.length;j++)
+            {
+               if(+mm[j] || +mm[j]==0)
+               {
+                   alphanumeric++
+                break
+              }
+            }
+    }
+    var str=(alphanumeric > numeric ? alphanumeric-numeric : numeric - alphanumeric )
+    var num=(numeric > alphanumeric ?  numeric  :  numeric)
+  
+    return  `Count of alphanumeric String = ${str} Count of numeric String = ${num}`
+}
+
+ff=str(a)
+console.log(ff)
+
+//---------------------------------------------------------------------------------------------
+
+//Problem 6 - Password Validation
+  function pass(a){
+    
+    test=false
+    test2=false
+    test3=false
+ for(let i=0;i<a.length;i++)
+  {
+    if(a[i] === a[i].toUpperCase() )
+    {
+       test=true 
+    }
+    if(a[i]=="!" || a[i]=="@" || a[i]=="#" || a[i]=="&" || a[i]== "*" || a[i]== "$")
+    {
+        test2=true
+    }
+      if(+a[i])
+    {
+        test3=true
+    }
+  }
+    if(test && test2 && test3 )
+    {
+        return "Valid"
+    }
+    else{
+        return "Invalid"
+    }
+}
+ans=pass(a)
+
+console.log(ans)
+
+
+
